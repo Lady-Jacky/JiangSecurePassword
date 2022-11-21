@@ -1,5 +1,26 @@
-public class Main {
+import java.util.Scanner;
+
+public class PasswordClient {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Choose a secure password that meets these requirements:");
+        System.out.println("- Is at least 8 characters long");
+        System.out.println("- Contains at least one uppercase letter");
+        System.out.println("- Contains at least one lowercase letter");
+        System.out.println("- Contains at least one numeric digit");
+        System.out.println("- Contains at least one of these symbols: ! @ # $ % ^ & * ?");
+        System.out.print("\nEnter your secure password: ");
+        String password = scanner.nextLine();
+
+        SecurePass pass = new SecurePass(password);
+        while (!pass.isSecure()) {
+            pass.status();
+            System.out.print("\nEnter your secure password: ");
+            password = scanner.nextLine();
+            pass.setPassword(password);
+        }
+        System.out.println("Password is secure");
     }
 }
+
